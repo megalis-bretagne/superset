@@ -9,6 +9,10 @@ RUN pip install flask_openid==1.3.0
 RUN pip install flask-oidc==1.3.0
 RUN pip install itsdangerous==2.0.1
 
-COPY custom /app/pythonpath/custom
+# Copy custom AuthOIDCView provider authentication
+COPY custom/auth /app/pythonpath/custom
 
 USER superset
+
+# COPY custom images/logo
+COPY custom/front/assets/images/favicon.png /app/superset/static/assets/images
