@@ -63,10 +63,12 @@ class AuthOIDCView(AuthOIDView):
                 user = sm.add_user(_username, _firstname, _lastname, _email, [])
                 logger.info(f"Création de l'utilisateur {_username} dans superset")
 
-            logger.info(f"Application des roles à l'utilisateur {user.username}")
-            default_role = current_app.config.get("CUSTOM_AUTH_USER_REGISTRATION_ROLE", "Public")
-            self._attach_roles_for(user, default_roles=[default_role])
-            sm.update_user(user)
+                logger.info(f"Application des roles à l'utilisateur {user.username}")
+                default_role = current_app.config.get("CUSTOM_AUTH_USER_REGISTRATION_ROLE", "Public")
+                self._attach_roles_for(user, default_roles=[default_role])
+                sm.update_user(user)
+            else :
+                logger.info(f"Connexion de l'utilisateur {user.username}")
 
             login_user(user, remember=False, force=True)
             session[OIDC_SID_KEY] = _sid
