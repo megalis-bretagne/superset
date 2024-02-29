@@ -1,6 +1,8 @@
-FROM apache/superset:3.1.0
+FROM apache/superset:3.0.1
 
 USER root
+RUN apt update && apt install -y vim
+
 
 RUN pip install psycopg[c,pool]
 RUN pip install Authlib
