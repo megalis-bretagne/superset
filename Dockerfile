@@ -1,4 +1,4 @@
-FROM apache/superset:4.0.2
+FROM apache/superset:5.0.0rc3
 
 USER root
 RUN apt update
