@@ -2,8 +2,11 @@ FROM apache/superset:5.0.0rc3
 
 USER root
 RUN apt update && \
-    apt install -y gcc && \
-    pip install --upgrade pip && \
+    apt install -y gcc
+
+USER superset
+
+RUN pip install --upgrade pip && \
     pip install psycopg[c,pool] && \
     pip install Authlib && \
     pip install flask_openid==1.3.1 && \
@@ -12,8 +15,6 @@ RUN apt update && \
 
 # Copy custom AuthOIDCView provider authentication
 COPY custom/auth /app/pythonpath/custom
-
-USER superset
 
 # COPY custom images/logo
 COPY custom/front/assets/images/favicon.png /app/superset/static/assets/images
