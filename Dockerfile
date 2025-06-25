@@ -2,7 +2,7 @@ FROM apache/superset:5.0.0
 
 USER root
 RUN apt update && \
-    apt install -y gcc pkg-config && \
+    apt install -y gcc default-libmysqlclient-dev build-essential pkg-config && \
     cd /app && \
     uv pip install psycopg2 && \
     uv pip install Authlib && \
